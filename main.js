@@ -11,8 +11,17 @@
   }
 })();
 
-function updateClock() {
+// IST (Indian Standard Time) offset: UTC+5:30
+const IST_OFFSET_MINUTES = 5.5 * 60;
+
+function getISTDate() {
   const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  return new Date(utc + IST_OFFSET_MINUTES * 60000);
+}
+
+function updateClock() {
+  const now = getISTDate();
 
   // Récupérer les heures et minutes
   const hours = now.getHours().toString().padStart(2, "0");
@@ -38,6 +47,30 @@ function updateClock() {
   setGlass(hour2, h2);
   setGlass(minute1, m1);
   setGlass(minute2, m2);
+
+  // Update date and weekday
+  updateDate(now);
+}
+
+function updateDate(date) {
+  const weekdayEl = document.getElementById("weekday");
+  const dateEl = document.getElementById("date");
+
+  if (!weekdayEl || !dateEl) return;
+
+  const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const dayName = weekdays[date.getDay()];
+  const dayNum = date.getDate();
+  const monthName = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  weekdayEl.textContent = dayName;
+  dateEl.textContent = `${dayNum} ${monthName}, ${year}`;
 }
 
 // Mettre à jour immédiatement, puis chaque seconde
