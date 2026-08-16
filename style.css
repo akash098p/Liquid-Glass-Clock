@@ -142,8 +142,8 @@ body {
   padding: 16px 32px;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 20px;
-  backdrop-filter: url(#filter-0);
-  -webkit-backdrop-filter: url(#filter-0);
+  backdrop-filter: url(#filter-date);
+  -webkit-backdrop-filter: url(#filter-date);
   mask: url(#shape-mask-date);
   -webkit-mask: url(#shape-mask-date);
   border: 1px solid rgba(255, 255, 255, 0.3);
