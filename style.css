@@ -1,510 +1,152 @@
-/* ==========================================
-   GLOBAL RESET
-   ========================================== */
-
-* {
+/* Copyright (c) 2025 by Alexandre Vacassin  (https://codepen.io/alexandrevacassin/pen/YPqqqwr) */
+body {
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  min-height: 100vh;
-  overflow: hidden;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: #050505;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  overflow: hidden;
 }
 
-
-/* ==========================================
-   BROWSER WARNING
-   ========================================== */
-
-#browser-warning {
-  position: fixed;
-
-  top: 20px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  z-index: 1000;
-
-  padding: 10px 18px;
-
-  border-radius: 10px;
-
-  background: rgba(255, 255, 255, 0.08);
-
-  border: 1px solid rgba(255, 255, 255, 0.15);
-
-  color: rgba(255, 255, 255, 0.8);
-
-  font-size: 13px;
-
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+.glass {
+  position: absolute;      
+  top: 50%;                
+  left: 50%;               
+  width: 520px;            
+  height: 520px;           
+  transform: translate(-50%, -50%);  
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
+.glass-points {
+    backdrop-filter: url(#filter-points);
+    -webkit-backdrop-filter: url(#filter-points);
+    mask: url(#shape-mask-points);
+    -webkit-mask: url(#shape-mask-points);
+  }
 
-/* ==========================================
-   CLOCK CONTAINER
-   ========================================== */
+.glass-0 {
+    backdrop-filter: url(#filter-0);
+    -webkit-backdrop-filter: url(#filter-0);
+    mask: url(#shape-mask-0);
+    -webkit-mask: url(#shape-mask-0);
+  }
+
+.glass-1 {
+    backdrop-filter: url(#filter-1);
+    -webkit-backdrop-filter: url(#filter-1);
+    mask: url(#shape-mask-1);
+    -webkit-mask: url(#shape-mask-1);
+  }
+
+.glass-2 {
+    backdrop-filter: url(#filter-2);
+    -webkit-backdrop-filter: url(#filter-2);
+    mask: url(#shape-mask-2);
+    -webkit-mask: url(#shape-mask-2);
+  }
+
+.glass-3 {
+    backdrop-filter: url(#filter-3);
+    -webkit-backdrop-filter: url(#filter-3);
+    mask: url(#shape-mask-3);
+    -webkit-mask: url(#shape-mask-3);
+  }
+
+.glass-4 {
+    backdrop-filter: url(#filter-4);
+    -webkit-backdrop-filter: url(#filter-4);
+    mask: url(#shape-mask-4);
+    -webkit-mask: url(#shape-mask-4);
+  }
+
+.glass-5 {
+    backdrop-filter: url(#filter-5);
+    -webkit-backdrop-filter: url(#filter-5);
+    mask: url(#shape-mask-5);
+    -webkit-mask: url(#shape-mask-5);
+  }
+
+.glass-6 {
+    backdrop-filter: url(#filter-6);
+    -webkit-backdrop-filter: url(#filter-6);
+    mask: url(#shape-mask-6);
+    -webkit-mask: url(#shape-mask-6);
+  }
+
+.glass-7 {
+    backdrop-filter: url(#filter-7);
+    -webkit-backdrop-filter: url(#filter-7);
+    mask: url(#shape-mask-7);
+    -webkit-mask: url(#shape-mask-7);
+  }
+
+ .glass-8 {
+    backdrop-filter: url(#filter-8);
+    -webkit-backdrop-filter: url(#filter-8);
+    mask: url(#shape-mask-8);
+    -webkit-mask: url(#shape-mask-8);
+  }
+
+  .glass-9 {
+    backdrop-filter: url(#filter-9);
+    -webkit-backdrop-filter: url(#filter-9);
+    mask: url(#shape-mask-9);
+    -webkit-mask: url(#shape-mask-9);
+  }
 
 .clock-container {
-  position: relative;
-
   display: flex;
-  align-items: center;
+  gap: 0px; 
+  flex-wrap: no-wrap;
   justify-content: center;
-
-  gap: 14px;
-
-  transform: translateY(-20px);
+    align-items: center;
+  height: 100vh;
 }
 
-
-/* ==========================================
-   CLOCK DIGIT GROUPS
-   ========================================== */
-
-.hour-1,
-.hour-2,
-.minute-1,
-.minute-2 {
+.number {
+  width: 115px;
+  height: 100vh;
   position: relative;
-
-  width: 130px;
-  height: 180px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
-
-/* ==========================================
-   GLASS DIGIT
-   ========================================== */
 
 .glass {
-  position: relative;
-
-  width: 100%;
-  height: 100%;
-
-  border-radius: 30px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.14),
-      rgba(255, 255, 255, 0.025)
-    );
-
-  border: 1px solid rgba(255, 255, 255, 0.12);
-
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.15),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.35),
-    0 20px 50px rgba(0, 0, 0, 0.45);
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition:
-    background 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
-}
-
-
-/* ==========================================
-   GLASS HIGHLIGHT
-   ========================================== */
-
-.glass::before {
-  content: "";
-
   position: absolute;
-
-  top: 0;
-  left: 8%;
-
-  width: 84%;
-  height: 45%;
-
-  border-radius: 30px 30px 50% 50%;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.08),
-      transparent
-    );
-
-  pointer-events: none;
-}
-
-
-/* ==========================================
-   GLASS REFLECTION
-   ========================================== */
-
-.glass::after {
-  content: "";
-
-  position: absolute;
-
-  top: 12%;
-  left: 12%;
-
-  width: 20%;
-  height: 55%;
-
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.035);
-
-  filter: blur(10px);
-
-  pointer-events: none;
-}
-
-
-/* ==========================================
-   DIGIT SHAPE
-   ========================================== */
-
-.glass {
-  color: transparent;
-}
-
-
-/*
-   Digital-style segments.
-
-   The existing digit classes from main.js
-   remain compatible with these styles.
-*/
-
-.glass-0::marker,
-.glass-1::marker,
-.glass-2::marker,
-.glass-3::marker,
-.glass-4::marker,
-.glass-5::marker,
-.glass-6::marker,
-.glass-7::marker,
-.glass-8::marker,
-.glass-9::marker {
-  display: none;
-}
-
-
-/* ==========================================
-   LIQUID GLASS DIGIT SHADOW
-   ========================================== */
-
-.glass-0,
-.glass-1,
-.glass-2,
-.glass-3,
-.glass-4,
-.glass-5,
-.glass-6,
-.glass-7,
-.glass-8,
-.glass-9 {
-  text-shadow:
-    0 0 20px rgba(255, 255, 255, 0.08),
-    0 0 40px rgba(255, 255, 255, 0.04);
-}
-
-
-/* ==========================================
-   COLON
-   ========================================== */
-
-.clock-container::before {
-  content: ":";
-
-  position: absolute;
-
+  top: 50%;
   left: 50%;
-
-  transform: translateX(-50%);
-
-  color: rgba(255, 255, 255, 0.75);
-
-  font-size: 60px;
-
-  font-weight: 300;
-
-  line-height: 1;
-
-  z-index: 10;
-
-  pointer-events: none;
-
-  text-shadow:
-    0 0 15px rgba(255, 255, 255, 0.15);
+  width: 520px;
+  height: 520px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
-
-/* ==========================================
-   DATE + WEEKDAY
-   ========================================== */
-
-#clock-date-info {
-  position: fixed;
-
-  left: 50%;
-  top: calc(50% + 205px);
-
-  transform: translateX(-50%);
-
-  z-index: 20;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  text-align: center;
-
-  color: rgba(255, 255, 255, 0.92);
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  letter-spacing: 2px;
-
-  line-height: 1.4;
-
-  text-shadow:
-    0 2px 12px rgba(0, 0, 0, 0.35);
-
-  pointer-events: none;
-
-  white-space: nowrap;
+.glass.active {
+  display: block; 
 }
 
-
-/* ==========================================
-   DATE
-   ========================================== */
-
-#clock-date {
-  font-size: 18px;
-
-  font-weight: 500;
-
-  letter-spacing: 2px;
-
-  color: rgba(255, 255, 255, 0.95);
+.separator {
+  width: 50px
 }
 
-
-/* ==========================================
-   WEEKDAY
-   ========================================== */
-
-#clock-weekday {
-  margin-top: 5px;
-
-  font-size: 15px;
-
-  font-weight: 400;
-
-  letter-spacing: 2px;
-
-  color: rgba(255, 255, 255, 0.72);
-
-  opacity: 0.9;
+#browser-warning {
+  display:none; 
+  color:white; 
+  background:#c00; 
+  padding:20px; 
+  text-align:center; 
+  border-radius:8px;
+  font-family: Arial, sans-serif;
+  position: absolute
 }
 
-
-/* ==========================================
-   RESPONSIVE - TABLET
-   ========================================== */
-
-@media (max-width: 1000px) {
-  .clock-container {
-    gap: 10px;
-
-    transform: translateY(-15px);
+ .video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   
+    z-index: -1;         
   }
-
-  .hour-1,
-  .hour-2,
-  .minute-1,
-  .minute-2 {
-    width: 105px;
-    height: 150px;
-  }
-
-  #clock-date-info {
-    top: calc(50% + 175px);
-  }
-
-  #clock-date {
-    font-size: 16px;
-  }
-
-  #clock-weekday {
-    font-size: 14px;
-  }
-}
-
-
-/* ==========================================
-   RESPONSIVE - MOBILE
-   ========================================== */
-
-@media (max-width: 700px) {
-  .clock-container {
-    gap: 7px;
-
-    transform: translateY(-10px);
-  }
-
-  .hour-1,
-  .hour-2,
-  .minute-1,
-  .minute-2 {
-    width: 70px;
-    height: 105px;
-  }
-
-  .glass {
-    border-radius: 20px;
-  }
-
-  .glass::before {
-    border-radius: 20px 20px 50% 50%;
-  }
-
-  .clock-container::before {
-    font-size: 38px;
-  }
-
-  #clock-date-info {
-    top: calc(50% + 125px);
-
-    letter-spacing: 1.5px;
-  }
-
-  #clock-date {
-    font-size: 14px;
-
-    letter-spacing: 1.5px;
-  }
-
-  #clock-weekday {
-    margin-top: 3px;
-
-    font-size: 12px;
-
-    letter-spacing: 1.5px;
-  }
-}
-
-
-/* ==========================================
-   SMALL MOBILE
-   ========================================== */
-
-@media (max-width: 430px) {
-  .clock-container {
-    gap: 5px;
-
-    transform: translateY(-5px);
-  }
-
-  .hour-1,
-  .hour-2,
-  .minute-1,
-  .minute-2 {
-    width: 56px;
-    height: 85px;
-  }
-
-  .glass {
-    border-radius: 16px;
-  }
-
-  .glass::before {
-    border-radius: 16px 16px 50% 50%;
-  }
-
-  .clock-container::before {
-    font-size: 30px;
-  }
-
-  #clock-date-info {
-    top: calc(50% + 105px);
-  }
-
-  #clock-date {
-    font-size: 12px;
-
-    letter-spacing: 1px;
-  }
-
-  #clock-weekday {
-    font-size: 11px;
-
-    letter-spacing: 1px;
-  }
-}
-
-
-/* ==========================================
-   VERY SMALL SCREENS
-   ========================================== */
-
-@media (max-height: 600px) {
-  .clock-container {
-    transform: scale(0.8) translateY(-30px);
-  }
-
-  #clock-date-info {
-    top: calc(50% + 130px);
-  }
-}
-
-
-/* ==========================================
-   ACCESSIBILITY
-   ========================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  .glass {
-    transition: none;
-  }
-}
