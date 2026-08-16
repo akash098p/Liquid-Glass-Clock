@@ -7,7 +7,35 @@
     <script defer src="main.js"></script>
     <title>Document</title>
 </head>
-<body>
+    <body>
+
+<svg style="position: absolute; width: 0; height: 0;">
+  <mask id="shape-mask-date" maskContentUnits="objectBoundingBox">
+    <rect x="0" y="0" width="1" height="1" rx="0.1" ry="0.1" fill="white" />
+  </mask>
+  <filter id="filter-date" primitiveUnits="objectBoundingBox">
+    <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="map" />
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.01" result="blur" />
+    <feColorMatrix in="blur" type="matrix" result="red_channel" values="1 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 1 0" />
+    <feDisplacementMap in="red_channel" in2="map" scale="0.4" xChannelSelector="B" yChannelSelector="R" result="red_displaced" />
+    <feColorMatrix in="blur" type="matrix" result="green_channel" values="0 0 0 0 0
+                            0 1 0 0 0
+                            0 0 0 0 0
+                            0 0 0 1 0" />
+    <feDisplacementMap in="green_channel" in2="map" scale="0.4" xChannelSelector="B" yChannelSelector="R" result="green_displaced" />
+    <feColorMatrix in="blur" type="matrix" result="blue_channel" values="0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 1 0 0
+                            0 0 0 1 0" />
+    <feDisplacementMap in="blue_channel" in2="map" scale="0.4" xChannelSelector="B" yChannelSelector="R" result="blue_displaced" />
+    <feComposite in="red_displaced" in2="green_displaced" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="rg_added" />
+    <feComposite in="rg_added" in2="blue_displaced" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" />
+  </filter>
+</svg>
+
     <div class="date-container">
       <div class="weekday" id="weekday"></div>
       <div class="date" id="date"></div>
